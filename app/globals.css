@@ -1,0 +1,35 @@
+/* Couleurs du guide de style (toutes validées WCAG) */
+:root {
+  --primary: #901c1c;
+  --secondary: #d3573c;
+  --salmon: #db8876;
+  --grey-text: #525252;
+  --grey-bg: #fafafa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #000;
+  background: #fff;
+}
+
+/* Texte lu par les lecteurs d'écran, mais invisible à l'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* Contour visible au clavier, pour savoir où est le focus */
+:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 3px;
+}
