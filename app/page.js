@@ -1,17 +1,17 @@
+import Header from "@/app/components/Header/Header";
+import PhotographerList from "@/app/components/PhotographerList/PhotographerList";
 import { getAllPhotographers } from "@/app/lib/prisma-db";
 
-// Server Component : il s'exécute côté serveur, donc il peut lire la base directement
+// Page d'accueil : récupère les photographes côté serveur et les transmet à la liste
 export default async function Home() {
   const photographers = await getAllPhotographers();
 
   return (
-    <main>
-      <h1>Test BDD</h1>
-      <ul>
-        {photographers.map((photographer) => (
-          <li key={photographer.id}>{photographer.name}</li>
-        ))}
-      </ul>
-    </main>
+    <>
+      <Header title="Nos photographes" />
+      <main>
+        <PhotographerList photographers={photographers} />
+      </main>
+    </>
   );
 }

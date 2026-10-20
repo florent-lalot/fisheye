@@ -1,0 +1,53 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+/* Cadre rond : coupe ce qui dépasse de la photo agrandie */
+.portraitFrame {
+  display: block;
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.3);
+}
+
+.name {
+  margin-top: 1.25rem;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: var(--secondary);
+}
+
+.location {
+  font-size: 0.8125rem;
+  color: var(--primary);
+}
+
+.tagline {
+  margin: 0.25rem 0;
+  font-size: 0.65rem;
+}
+
+.price {
+  font-size: 0.6875rem;
+  color: var(--grey-text);
+}

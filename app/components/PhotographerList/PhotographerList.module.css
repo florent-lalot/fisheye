@@ -1,0 +1,17 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 4.5rem;
+  margin: 6.9375rem 0rem 6.625rem;
+  list-style: none;
+}
+
+.item {
+  flex: 0 0 calc(30% - 1.25rem);
+}
+
+/* 1re carte de chaque ligne (1, 4, 7…) : décalée de 5px vers la gauche */
+.item:nth-child(3n + 1) {
+  transform: translateX(-0.3125rem);
+}
