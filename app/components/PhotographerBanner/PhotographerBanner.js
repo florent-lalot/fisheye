@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./PhotographerBanner.module.css";
+import ContactModal from "../ContactModal/ContactModal";
 
 // Bandeau du photographe : infos, bouton de contact (actif plus tard) et portrait
 export default function PhotographerBanner({ photographer }) {
@@ -14,9 +15,7 @@ export default function PhotographerBanner({ photographer }) {
         </p>
         <p className={styles.tagline}>{tagline}</p>
       </div>
-      <button type="button" className={styles.contactButton}>
-        Contactez-moi
-      </button>
+      <ContactModal photographerName={name} />
       <span className={styles.portraitFrame}>
         <Image
           src={`/${portrait}`}
