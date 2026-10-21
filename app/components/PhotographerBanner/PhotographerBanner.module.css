@@ -26,26 +26,6 @@
   color: var(--grey-text);
 }
 
-.contactButton {
-  padding: 1.375rem 0.75rem;
-  border: none;
-  border-radius: 0.3rem;
-  background: var(--primary);
-  color: #fff;
-  font-family: inherit;
-  font-size: 1.25rem;
-  font-weight: 700;
-  cursor: pointer;
-  transform: translate(-2.4rem, 0.9rem);
-}
-
-/* Survol et focus : couleurs du guide de style */
-.contactButton:hover,
-.contactButton:focus-visible {
-  background: var(--salmon);
-  color: #000;
-}
-
 .portraitFrame {
   display: block;
   width: 12.5rem;
