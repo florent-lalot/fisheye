@@ -1,9 +1,15 @@
 /* Cadre du média : c'est lui qui fixe la taille */
 .frame {
   position: relative;
+  display: block;
+  width: 100%;
   height: 18.75rem;
+  padding: 0;
+  border: none;
   border-radius: 0.3rem;
+  background: none;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .media {

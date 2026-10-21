@@ -1,51 +1,27 @@
 "use client";
 
-import { useEffect, useId, useRef } from "react";
+import { useId } from "react";
+import Modal from "../Modal/Modal";
 import styles from "./ContactForm.module.css";
 
-// Enfant : la modale (balise <dialog> native) avec le formulaire de contact
+// Modale de contact : utilise la modale générique, ne contient que le formulaire
 export default function ContactForm({ photographerName, onClose }) {
-  const dialogRef = useRef(null);
   const id = useId();
 
-  // Dès l'affichage : ouverture en mode modal (fond grisé, Échap, focus piégé)
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog.open) dialog.showModal();
-  }, []);
-
-  // Envoi : affiche les champs dans la console (demandé par les spécifications), puis ferme
+  // Affiche les champs dans la console (demandé par les spécifications).
+  // method="dialog" : le formulaire ferme la modale tout seul après l'envoi.
   const handleSubmit = (event) => {
-    event.preventDefault();
     const formData = Object.fromEntries(new FormData(event.currentTarget));
     console.log("Formulaire de contact :", formData);
-    dialogRef.current.close();
   };
-  // Boucle du focus : Tab sur le dernier élément → retour au premier, Maj+Tab sur le premier → le dernier
-  const handleKeyDown = (event) => {
-    if (event.key !== "Tab") return;
 
-    const focusables = dialogRef.current.querySelectorAll(
-      "input, textarea, button",
-    );
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-
-    if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    } else if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    }
-  };
   return (
-    <dialog
-      ref={dialogRef}
-      className={styles.dialog}
-      aria-labelledby={`${id}-title`}
+    <Modal
       onClose={onClose}
-      onKeyDown={handleKeyDown}
+      labelledBy={`${id}-title`}
+      className={styles.dialog}
+      closeLabel="Fermer le formulaire de contact"
+      closeClassName={styles.closeButton}
     >
       <h2 id={`${id}-title`} className={styles.title}>
         Contactez-moi
@@ -53,7 +29,7 @@ export default function ContactForm({ photographerName, onClose }) {
         {photographerName}
       </h2>
 
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form method="dialog" className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor={`${id}-firstname`} className={styles.label}>
           Prénom
         </label>
@@ -104,27 +80,6 @@ export default function ContactForm({ photographerName, onClose }) {
           Envoyer
         </button>
       </form>
-
-      {/* Placé en dernier : c'est le dernier élément du parcours au clavier (annotation ⑫) */}
-      <button
-        type="button"
-        className={styles.closeButton}
-        aria-label="Fermer le formulaire de contact"
-        onClick={() => dialogRef.current.close()}
-      >
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          width="1em"
-          height="1em"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeLinecap="round"
-        >
-          <path d="M5 5l14 14M19 5L5 19" />
-        </svg>
-      </button>
-    </dialog>
+    </Modal>
   );
 }

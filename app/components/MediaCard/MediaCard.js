@@ -1,14 +1,18 @@
 import Image from "next/image";
 import styles from "./MediaCard.module.css";
 
-// Carte d'un média : photo ou miniature de vidéo, titre et nombre de likes
-export default function MediaCard({ media, isAboveFold }) {
+// Carte d'un média : photo ou miniature de vidéo (bouton qui ouvre la lightbox), titre et likes
+export default function MediaCard({ media, isAboveFold, onOpen }) {
   const { title, image, video, likes } = media;
 
   return (
     <article className={styles.card}>
-      {/* Cadre qui fixe la taille du média (l'image le remplit grâce à "fill") */}
-      <div className={styles.frame}>
+      <button
+        type="button"
+        className={styles.frame}
+        aria-label={`${title}, vue rapprochée`}
+        onClick={onOpen}
+      >
         {image ? (
           <Image
             src={`/${image}`}
@@ -27,7 +31,7 @@ export default function MediaCard({ media, isAboveFold }) {
             className={styles.media}
           />
         )}
-      </div>
+      </button>
       <div className={styles.info}>
         <p className={styles.title}>{title}</p>
         <p className={styles.likes}>
