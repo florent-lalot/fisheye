@@ -1,0 +1,63 @@
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 19.5rem;
+  margin-top: 2.5rem;
+  padding: 0 3rem;
+  background: var(--grey-bg);
+}
+
+.name {
+  font-size: 4rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--secondary);
+}
+
+.location {
+  margin: 0.75rem 0 1.25rem;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.tagline {
+  font-size: 1.125rem;
+  color: var(--grey-text);
+}
+
+.contactButton {
+  padding: 1.375rem 0.75rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: var(--primary);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transform: translate(-2.4rem, 0.9rem);
+}
+
+/* Survol et focus : couleurs du guide de style */
+.contactButton:hover,
+.contactButton:focus-visible {
+  background: var(--salmon);
+  color: #000;
+}
+
+.portraitFrame {
+  display: block;
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.3);
+}

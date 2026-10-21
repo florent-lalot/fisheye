@@ -1,5 +1,6 @@
 import path from "node:path";
 import { PrismaClient } from "@/generated/prisma/client";
+import { cache } from "react";
 
 // Chemin absolu vers la base : process.cwd() = racine du projet.
 // Nécessaire car Next.js exécute le code depuis .next/, ce qui casse le chemin relatif du schéma.
@@ -16,9 +17,11 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export const getAllPhotographers = () => prisma.photographer.findMany();
 
-export const getPhotographer = (id) =>
-  prisma.photographer.findUnique({ where: { id } });
-
+// cache() : si la fonction est appelée 2 fois pendant le même chargement de page,
+// la base n'est interrogée qu'une seule fois (utile car le titre et la page en ont besoin)
+export const getPhotographer = cache((id) =>
+  prisma.photographer.findUnique({ where: { id } }),
+);
 export const getAllMediasForPhotographer = (photographerId) =>
   prisma.media.findMany({ where: { photographerId } });
 

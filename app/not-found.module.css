@@ -1,0 +1,44 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem 1rem;
+  text-align: center;
+}
+
+.code {
+  font-size: 9rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--secondary);
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: var(--primary);
+}
+
+.message {
+  margin: 1rem 0 2.5rem;
+  font-size: 1.125rem;
+  color: var(--grey-text);
+}
+
+/* Même style que le bouton "Contactez-moi" */
+.button {
+  padding: 1.375rem 1.5rem;
+  border-radius: 0.3rem;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--salmon);
+  color: #000;
+}
