@@ -37,7 +37,7 @@ export default async function PhotographerPage({ params }) {
       <Header />
       <main className={styles.main}>
         <PhotographerBanner photographer={photographer} />
-        <MediaGallery medias={medias} />
+        <MediaGallery medias={medias} price={photographer.price} />
       </main>
     </>
   );

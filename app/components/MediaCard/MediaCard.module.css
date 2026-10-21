@@ -39,3 +39,19 @@
   width: 1em;
   height: 1em;
 }
+/* Bouton cœur : on retire le style par défaut du bouton */
+.likeButton {
+  display: flex;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+/* Petit effet au survol et quand le média est liké */
+.likeButton:hover svg,
+.likeButton[aria-pressed="true"] svg {
+  transform: scale(1.15);
+}
