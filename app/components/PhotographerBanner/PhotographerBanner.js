@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./PhotographerBanner.module.css";
 import ContactModal from "../ContactModal/ContactModal";
+import Portrait from "../Portrait/Portrait";
 
 // Bandeau du photographe : infos, bouton de contact (actif plus tard) et portrait
 export default function PhotographerBanner({ photographer }) {
@@ -9,23 +10,18 @@ export default function PhotographerBanner({ photographer }) {
   return (
     <section className={styles.banner}>
       <div>
-        <h1 className={styles.name}>{name}</h1>
-        <p className={styles.location}>
-          {city}, {country}
-        </p>
-        <p className={styles.tagline}>{tagline}</p>
+        <h1 className={styles.name} tabIndex={0}>
+          {name}
+        </h1>
+        <div tabIndex={0}>
+          <p className={styles.location}>
+            {city}, {country}
+          </p>
+          <p className={styles.tagline}>{tagline}</p>
+        </div>
       </div>
       <ContactModal photographerName={name} />
-      <span className={styles.portraitFrame}>
-        <Image
-          src={`/${portrait}`}
-          alt={name}
-          width={200}
-          height={200}
-          loading="eager"
-          className={styles.portrait}
-        />
-      </span>
+      <Portrait src={`/${portrait}`} alt={name} />
     </section>
   );
 }

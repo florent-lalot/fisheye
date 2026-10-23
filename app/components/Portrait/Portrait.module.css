@@ -1,0 +1,36 @@
+.portrait {
+  position: relative;
+  display: block;
+  width: 12.5rem;
+  height: 12.5rem;
+}
+
+/* Photo non découpée, très transparente, bords fondus : elle dépasse du cercle */
+.overflow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.3);
+  opacity: 0.12;
+  mask-image: radial-gradient(circle closest-side, #000 70%, transparent 90%);
+}
+
+/* Cercle par-dessus */
+.frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.3);
+}

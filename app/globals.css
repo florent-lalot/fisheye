@@ -33,3 +33,50 @@ body {
   outline: 3px solid var(--secondary);
   outline-offset: 3px;
 }
+/* Pages d'état : 404 et erreur */
+.status-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem 1rem;
+  text-align: center;
+}
+
+.status-code {
+  font-size: 9rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--secondary);
+}
+
+.status-title {
+  margin-top: 1rem;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: var(--primary);
+}
+
+.status-message {
+  margin: 1rem 0 2.5rem;
+  font-size: 1.125rem;
+  color: var(--grey-text);
+}
+
+.status-button {
+  padding: 1.375rem 1.5rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: var(--primary);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.status-button:hover,
+.status-button:focus-visible {
+  background: var(--salmon);
+  color: #000;
+}
