@@ -20,6 +20,7 @@ export default function MediaGallery({ medias, price }) {
     ),
   );
   const [openIndex, setOpenIndex] = useState(null);
+  const [likeError, setLikeError] = useState(false);
 
   const totalLikes = items.reduce((sum, media) => sum + media.likes, 0);
 
@@ -29,20 +30,30 @@ export default function MediaGallery({ medias, price }) {
     setItems((current) => sortMedias(current, value));
   };
 
+  // Remet un média dans un état donné (utilisé pour le like et pour l'annulation)
+  const updateMedia = (mediaId, likes, liked) => {
+    setItems((current) =>
+      current.map((item) =>
+        item.id === mediaId ? { ...item, likes, liked } : item,
+      ),
+    );
+  };
+
   // Like / unlike : affichage mis à jour tout de suite, puis enregistrement en base.
-  // L'ordre n'est pas recalculé ici : la photo ne "saute" pas sous la souris.
+  // En cas d'échec : on annule et on prévient l'utilisateur.
   const handleLike = async (mediaId) => {
     const media = items.find((item) => item.id === mediaId);
     const newLikes = media.liked ? media.likes - 1 : media.likes + 1;
 
-    setItems((current) =>
-      current.map((item) =>
-        item.id === mediaId
-          ? { ...item, likes: newLikes, liked: !item.liked }
-          : item,
-      ),
-    );
-    await saveLikes(mediaId, newLikes);
+    updateMedia(mediaId, newLikes, !media.liked);
+
+    try {
+      await saveLikes(mediaId, newLikes);
+      setLikeError(false);
+    } catch {
+      updateMedia(mediaId, media.likes, media.liked);
+      setLikeError(true);
+    }
   };
 
   return (
@@ -52,6 +63,12 @@ export default function MediaGallery({ medias, price }) {
       </h2>
 
       <SortSelect value={sortBy} onChange={handleSortChange} />
+
+      {likeError && (
+        <p role="alert" className={styles.error}>
+          Votre like n’a pas pu être enregistré. Veuillez réessayer.
+        </p>
+      )}
 
       <ul className={styles.gallery}>
         {items.map((media, index) => (
